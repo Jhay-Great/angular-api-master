@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 
 // local modules
 import { PostService } from '../../services/post/post.service';
+import { IPost } from '../../interface/post.interface';
 
 @Component({
   selector: 'app-display-all-posts',
@@ -12,11 +13,17 @@ import { PostService } from '../../services/post/post.service';
 })
 export class DisplayAllPostsComponent {
 
+  data!:IPost[];
+
   constructor (
     private postService: PostService,
   ) {
 
-    postService.fetchData('post');
+    console.log('this is running');
+
+    this.postService.fetchData('posts').subscribe(
+      value => console.log(value),
+    )
 
   }
 
