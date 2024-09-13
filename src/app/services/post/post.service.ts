@@ -12,8 +12,14 @@ export class PostService {
     private httpClient: HttpClient,
   ) { }
 
-  fetch (type:string) {
-    return 
+  // gets or fetches data from the server
+  fetchData (type:string) {
+    return this.httpClient.get(`${this.api}${type}`)
+  }
+
+  // post data to the server
+  postData (type:{}) {
+    return
   }
   
 }
