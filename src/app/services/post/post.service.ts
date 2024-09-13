@@ -1,9 +1,11 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
 
 // local modules imports
 import { IPost } from '../../interface/post.interface';
-import { Observable } from 'rxjs';
+// interceptor
+import { authInterceptor } from '../interceptors/auth.interceptor';
 
 @Injectable({
   providedIn: 'root'
