@@ -5,6 +5,8 @@ export interface IPost {
     body: string;
 }
 
+
+
 // export interface IPostAction {
 //     // type
 // }
