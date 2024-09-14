@@ -1,1 +1,10 @@
-<p>display-all-posts works!</p>
+
+@for (post of data | async; track $index) {
+    <h2 class="title">
+        {{ post.title}}
+    </h2>
+    <p class="body">
+        {{ post.body }}
+    </p>
+}
+

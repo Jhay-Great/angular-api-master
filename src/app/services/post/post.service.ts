@@ -5,14 +5,12 @@ import { BehaviorSubject, catchError, map, Observable, of, tap } from 'rxjs';
 // local modules imports
 import { IPost } from '../../interface/post.interface';
 import { environment } from '../../../environments/environment';
-
-
 @Injectable({
   providedIn: 'root'
 })
 export class PostService {
 
-  private api:string = `${environment.apiUrl}posts`;
+  private api:string = `${environment.apiUrl}posts`; 
 
   // caching
   private posts:IPost[] = [];
@@ -28,6 +26,9 @@ export class PostService {
     this.httpClient.get<IPost[]>(`${this.api}`).pipe(
       // transformation
       map(posts => this.storeSubject.next(posts)),
+      tap(data => {
+        console.log(data);
+      }),
       // error handling
       catchError((error) => {
         console.log('logs error: ', error);
