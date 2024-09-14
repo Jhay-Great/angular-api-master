@@ -5,7 +5,7 @@ import { catchError, map, mergeMap, of, tap } from "rxjs";
 import { PostService } from "../../services/post/post.service";
 
 @Injectable ()
-export class PostEffect {
+export class loadPostEffect {
     loadItems$ = createEffect(() => 
         this.actions$.pipe(
             ofType(LOAD_POST_DATA),
@@ -22,5 +22,7 @@ export class PostEffect {
     constructor (
         private actions$: Actions,
         private postService: PostService,
-    ) {};
+    ) {
+        console.log('effect is called...')
+    };
 }

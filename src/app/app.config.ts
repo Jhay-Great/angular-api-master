@@ -12,6 +12,7 @@ import {
 } from './interceptors/auth.interceptor';
 import { provideRouterStore } from '@ngrx/router-store';
 import { postReducer } from './state/reducers/post.reducer';
+import { loadPostEffect } from './state/effects/post.effect';
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -23,7 +24,9 @@ export const appConfig: ApplicationConfig = {
         name: 'post', reducer: postReducer,
       }
     ),
-    provideEffects(),
+    provideEffects(
+      loadPostEffect
+    ),
     provideStoreDevtools({ maxAge: 25, logOnly: !isDevMode() }),
     provideRouterStore(),
   ],

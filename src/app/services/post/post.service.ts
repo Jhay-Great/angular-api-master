@@ -11,7 +11,7 @@ import { IPost } from '../../interface/post.interface';
 })
 export class PostService {
 
-  api:string = 'https://jsonplaceholder.typicode.com/';
+  private api:string = 'https://jsonplaceholder.typicode.com/';
 
   // caching
   private posts:IPost[] = [];
