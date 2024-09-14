@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 
 // local modules
 import { PostService } from '../../services/post/post.service';
@@ -11,20 +11,21 @@ import { IPost } from '../../interface/post.interface';
   templateUrl: './display-all-posts.component.html',
   styleUrl: './display-all-posts.component.scss'
 })
-export class DisplayAllPostsComponent {
+export class DisplayAllPostsComponent implements OnInit {
 
   data!:IPost[];
 
   constructor (
     private postService: PostService,
-  ) {
-
+  ) { }
+  
+  ngOnInit(): void {
     console.log('this is running');
-
-    this.postService.fetchData('posts').subscribe(
+  
+    this.postService.getPosts().subscribe(
       value => console.log(value),
     )
-
+    
   }
 
 }
