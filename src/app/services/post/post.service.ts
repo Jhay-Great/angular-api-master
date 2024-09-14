@@ -26,9 +26,6 @@ export class PostService {
     this.httpClient.get<IPost[]>(`${this.api}`).pipe(
       // transformation
       map(posts => this.storeSubject.next(posts)),
-      tap(data => {
-        console.log(data);
-      }),
       // error handling
       catchError((error) => {
         console.log('logs error: ', error);

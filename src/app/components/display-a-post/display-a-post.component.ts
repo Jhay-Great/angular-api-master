@@ -8,5 +8,6 @@ import { Component } from '@angular/core';
   styleUrl: './display-a-post.component.scss'
 })
 export class DisplayAPostComponent {
+  
 
 }

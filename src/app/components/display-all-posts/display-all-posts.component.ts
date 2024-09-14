@@ -25,13 +25,8 @@ export class DisplayAllPostsComponent implements OnInit {
   ) { }
   
   ngOnInit(): void {
-    // console.log('called from store: ', this.store.select(selectPost))
-    this.store.select(selectPost).subscribe(
-      data => console.log('called from store: ', data),
-    )
 
     this.data = this.store.select(selectPost);
-    console.log(this.data);
     
     
   }
