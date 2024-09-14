@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { BehaviorSubject, catchError, map, Observable, of } from 'rxjs';
+import { BehaviorSubject, catchError, map, Observable, of, tap } from 'rxjs';
 
 // local modules imports
 import { IPost } from '../../interface/post.interface';
@@ -42,16 +42,39 @@ export class PostService {
   }
 
   // post data to the server
-  post (type:{}) {
-    return
+  post (body:string) {
+    return this.httpClient.post<IPost[]>(this.api, body).pipe(
+      tap(data => {
+        this.storeSubject.next(data)
+      }),
+      catchError((error) => {
+        return of([]);
+      })
+    )
   }
 
-  put () {
-
+  put (id:string, body:string) {
+    const url = `${this.api}/${id}`;
+    return this.httpClient.put<IPost[]>(url, body).pipe(
+      tap(data => {
+        this.storeSubject.next(data)
+      }),
+      catchError((error) => {
+        return of([]);
+      })
+    )
   };
 
-  delete () {
-
+  delete (id:string) {
+    const url = `${this.api}/${id}`;
+    return this.httpClient.delete<IPost[]>(url).pipe(
+      tap(data => {
+        this.storeSubject.next(data)
+      }),
+      catchError((error) => {
+        return of([]);
+      })
+    )
   };
   
 }
