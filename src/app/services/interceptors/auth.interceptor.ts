@@ -1,22 +1,26 @@
 import { HttpInterceptorFn, HttpRequest, HttpResponse } from '@angular/common/http';
 import { tap } from 'rxjs';
 
-export const authInterceptor: HttpInterceptorFn = (req, next) => {
-  // generate a random token for now
-  const result = generateAuthToken();
-  const authReq = req.clone({setHeaders: { Authorization: result}})
-
-  return next(authReq);
-  
-  // return next(req);
-};
 
 
+
+// helper functions
 const generateRandom = () => Math.random() * 50;
 
 const generateAuthToken = function () {
   return `${generateRandom()}${generateRandom()}${generateRandom()}`; 
 }
+
+export const authInterceptor: HttpInterceptorFn = (req, next) => {
+  // generate a random token for now
+  const token = generateAuthToken();
+  const authReq = req.clone({setHeaders: { Authorization: token}})
+
+  return next(authReq); // passes the request to the next interceptor
+  
+  // return next(req);
+};
+
 
 // logger interceptor
 export const loggerInterceptor: HttpInterceptorFn = (req, next) => {
