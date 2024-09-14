@@ -4,11 +4,7 @@ import { BehaviorSubject, catchError, map, Observable, of } from 'rxjs';
 
 // local modules imports
 import { IPost } from '../../interface/post.interface';
-// interceptor
-import {
-  authInterceptor,
-  loggerInterceptor,
-} from '../../interceptors/auth.interceptor';
+import { ErrorService } from '../errors/error.service';
 
 @Injectable({
   providedIn: 'root',
@@ -21,7 +17,10 @@ export class PostService {
   private storeSubject = new BehaviorSubject<IPost[]>(this.posts);
   private store$ = this.storeSubject.asObservable();
 
-  constructor(private httpClient: HttpClient) {}
+  constructor(
+    private httpClient: HttpClient,
+    private errorService: ErrorService
+  ) {}
 
   // gets or fetches data from the server
   private fetchData(type: string): void {
@@ -30,6 +29,8 @@ export class PostService {
       .pipe(
         // transformation
         map((posts) => this.storeSubject.next(posts)),
+        // retries
+        this.errorService.retry(),
         // error handling
         catchError((error) => {
           console.log('logs error: ', error);

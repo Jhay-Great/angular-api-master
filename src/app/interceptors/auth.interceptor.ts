@@ -27,7 +27,7 @@ export const loggerInterceptor: HttpInterceptorFn = (req, next) => {
   console.log(`Outgoing request to ${req.url}`);
   return next(req).pipe(
     tap(event => {
-      console.log(event.type);
+      // console.log(event.type);
       if (event instanceof HttpResponse) {
         console.log(`incoming response from ${req.url}`)
       }
