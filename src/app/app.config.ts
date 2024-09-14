@@ -11,13 +11,18 @@ import {
   loggerInterceptor,
 } from './interceptors/auth.interceptor';
 import { provideRouterStore } from '@ngrx/router-store';
+import { postReducer } from './state/reducers/post.reducer';
 
 export const appConfig: ApplicationConfig = {
   providers: [
     provideRouter(routes),
     provideHttpClient(withInterceptors([authInterceptor, loggerInterceptor])),
     provideStore(),
-    // provideState(),
+    provideState(
+      {
+        name: 'post', reducer: postReducer,
+      }
+    ),
     provideEffects(),
     provideStoreDevtools({ maxAge: 25, logOnly: !isDevMode() }),
     provideRouterStore(),

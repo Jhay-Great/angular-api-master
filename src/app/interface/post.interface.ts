@@ -5,7 +5,9 @@ export interface IPost {
     body: string;
 }
 
-
+export interface AppState {
+    post: IPost,
+}
 
 // export interface IPostAction {
 //     // type

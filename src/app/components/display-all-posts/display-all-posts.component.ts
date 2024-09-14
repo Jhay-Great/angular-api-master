@@ -2,7 +2,9 @@ import { Component, OnInit } from '@angular/core';
 
 // local modules
 import { PostService } from '../../services/post/post.service';
-import { IPost } from '../../interface/post.interface';
+import { AppState, IPost } from '../../interface/post.interface';
+import { Store } from '@ngrx/store';
+import { selectPost } from '../../state/selectors/post.selector';
 
 @Component({
   selector: 'app-display-all-posts',
@@ -17,14 +19,18 @@ export class DisplayAllPostsComponent implements OnInit {
 
   constructor (
     private postService: PostService,
+    private store: Store<AppState>
   ) { }
   
   ngOnInit(): void {
-    console.log('this is running');
-  
-    this.postService.getPosts().subscribe(
-      value => console.log(value),
+    // console.log('called from store: ', this.store.select(selectPost))
+    this.store.select(selectPost).subscribe(
+      data => console.log('called from store: ', data),
     )
+  
+    // this.postService.getPosts().subscribe(
+    //   value => console.log(value),
+    // )
     
   }
 
