@@ -41,8 +41,16 @@ export class PostService {
   }
 
   // post data to the server
-  postData (type:{}) {
+  post (type:{}) {
     return
   }
+
+  put () {
+
+  };
+
+  delete () {
+
+  };
   
 }
