@@ -4,6 +4,7 @@ import { BehaviorSubject, catchError, map, Observable, of } from 'rxjs';
 
 // local modules imports
 import { IPost } from '../../interface/post.interface';
+import { environment } from '../../../environments/environment';
 
 
 @Injectable({
@@ -11,7 +12,7 @@ import { IPost } from '../../interface/post.interface';
 })
 export class PostService {
 
-  private api:string = 'https://jsonplaceholder.typicode.com/';
+  private api:string = `${environment.apiUrl}posts`;
 
   // caching
   private posts:IPost[] = [];
@@ -23,8 +24,8 @@ export class PostService {
   ) { }
 
   // gets or fetches data from the server
-  private fetchData (type:string):void {
-    this.httpClient.get<IPost[]>(`${this.api}${type}`).pipe(
+  private fetchData ():void {
+    this.httpClient.get<IPost[]>(`${this.api}`).pipe(
       // transformation
       map(posts => this.storeSubject.next(posts)),
       // error handling
@@ -36,7 +37,7 @@ export class PostService {
   }
 
   getPosts () {
-    this.fetchData('posts');
+    this.fetchData();
     return this.store$;
   }
 
