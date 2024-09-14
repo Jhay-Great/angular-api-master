@@ -5,7 +5,7 @@ import { Observable } from 'rxjs';
 // local modules imports
 import { IPost } from '../../interface/post.interface';
 // interceptor
-import { authInterceptor } from '../interceptors/auth.interceptor';
+import { authInterceptor, loggerInterceptor } from '../interceptors/auth.interceptor';
 
 @Injectable({
   providedIn: 'root'
