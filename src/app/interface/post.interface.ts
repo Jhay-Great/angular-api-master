@@ -6,7 +6,12 @@ export interface IPost {
 }
 
 export interface AppState {
-    post: IPost,
+    post: PostApi,
+}
+
+export interface PostApi {
+    data: IPost[],
+
 }
 
 // export interface IPostAction {

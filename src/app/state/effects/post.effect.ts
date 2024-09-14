@@ -11,7 +11,7 @@ export class loadPostEffect {
             ofType(LOAD_POST_DATA),
             mergeMap(() => 
                 this.postService.getPosts().pipe(
-                    tap(data => console.log('logging from effect: ', data)),
+                    // tap(data => console.log('logging from effect: ', data)),
                     map(data => onSuccess({data})),
                     catchError(error => of(onFailure({error})))
                 )
