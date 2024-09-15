@@ -6,8 +6,12 @@ const postFeature = (state:AppState) => state.post;
 export const selectAllPost = createSelector(
     postFeature,
     (postFeature) => {
-        console.log('in select: ', postFeature.data);
-        return postFeature.data
+        const data = postFeature.data;
+        const start = 0;
+        const end = 10;
+        const postList = data.slice(start, end);
+        return postList;
+        // return postFeature.data
     }
 )
 
@@ -18,5 +22,13 @@ export const selectSinglePost = createSelector(
         const data = postFeature.data;
         console.log('in selector: ', data, id);
         return data.filter(post => post.id === id);
+    }
+)
+
+// pagination
+export const selectPages = createSelector(
+    postFeature, 
+    (postFeature) => {
+        return postFeature.currentPageNumber
     }
 )
