@@ -1,0 +1,16 @@
+@use "sass:math";
+// rem to pixels
+@function pixelsToRem ($size) {
+    @return math.div($size, 16) + rem;
+}
+
+// responsive size
+@function clampSize($minSize, $idealSize, $maxSize) {
+    @return clamp(#{$minSize}, #{$idealSize}, #{$maxSize});
+}
+
+// darkens or lightens color by %
+@function adjustColor($color, $percentage) {
+    @return mix(black, $color, $percentage);
+}
+

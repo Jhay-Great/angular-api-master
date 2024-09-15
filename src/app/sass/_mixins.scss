@@ -1,0 +1,38 @@
+@use './variables' as Variable;
+@use './functions' as Function;
+
+// @mixin flexbox($direction: row, $align-items: center, $justify-content: center) {
+//     display: flex;
+//     flex-direction: $direction;
+//     align-items: $align-items;
+//     justify-content: $justify-content;
+// }
+
+@mixin flex-row ($gapSize: 5rem) {
+    display: flex;
+    flex-direction: row;
+    gap: $gapSize;
+}
+
+@mixin flex-column ($gapSize: 5rem) {
+    display: flex;
+    flex-direction: column;
+    gap: $gapSize;
+}
+
+@mixin header ($font-size: 1rem) {
+    font-family: sans-serif;
+    // font-size: 4rem;
+    // font-size: Function.clampSize(1rem, Function.pixelT);
+    font-size: clampSize(1rem, 2vw, 2rem);
+}
+
+@mixin buttons {
+    width: fit-content;
+    height: fit-content;
+    padding: .5rem 1rem;
+    border-radius: Function.pixelsToRem(4);
+    border: 1px solid Variable.$transparent;
+    cursor: pointer;
+    // background
+}

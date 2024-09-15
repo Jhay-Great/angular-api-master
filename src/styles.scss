@@ -1,1 +1,25 @@
-/* You can add global styles to this file, and also import other style files */
+
+@use './app/sass/mixins' as Mixin;
+@use './app/sass/variables' as Variable;
+@use './app/sass/functions' as Function;
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    @include Mixin.flex-column;
+    width: 100%;
+    min-height: 100dvh;
+    
+}
+
+h2 {
+    @include Mixin.header()
+}
+
+button {
+    @include Mixin.buttons;
+}
