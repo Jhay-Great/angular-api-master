@@ -16,6 +16,8 @@ export interface PostApi {
     totalPageNumber: number,
     isLoading: boolean,
     error: string,
+    start: number;
+    end: number;
 }
 
 export interface IPublish {

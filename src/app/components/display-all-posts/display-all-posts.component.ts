@@ -7,6 +7,7 @@ import { Store } from '@ngrx/store';
 import { selectAllPost } from '../../state/selectors/post.selector';
 import { Observable } from 'rxjs';
 import { AsyncPipe } from '@angular/common';
+import { nextPage, previousPage } from '../../state/actions/post.action';
 
 @Component({
   selector: 'app-display-all-posts',
@@ -29,6 +30,14 @@ export class DisplayAllPostsComponent implements OnInit {
     this.data = this.store.select(selectAllPost);
     
     
+  }
+
+  next () {
+    this.store.dispatch(nextPage());
+  }
+
+  previous () {
+    this.store.dispatch(previousPage());
   }
 
 }

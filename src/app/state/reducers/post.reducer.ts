@@ -13,7 +13,9 @@ const initialValue:PostApi = {
     currentPageNumber: 0,
     totalPageNumber: 0,
     isLoading: false,
-    error: ''
+    error: '',
+    start: 0,
+    end: 10,
 }
 
 export const postReducer = createReducer(
@@ -34,18 +36,22 @@ export const postReducer = createReducer(
     }),
     on(successPublishPost, (state, { data }) => ({...state, data})),
     on(nextPage, (state) => {
-        const {totalPageNumber, currentPageNumber} = state;
+        const {totalPageNumber, currentPageNumber, start, end} = state;
         return {
             ...state,
-            currentPageNumber: Math.min(currentPageNumber + 1, totalPageNumber)
+            currentPageNumber: Math.min(currentPageNumber + 1, totalPageNumber),
+            start: start + 10,
+            end: end + 10,
             // currentPageNumber: state.currentPageNumber + 1,
         }
     }),
     on(previousPage, (state) => {
-        const {totalPageNumber, currentPageNumber} = state;
+        const {totalPageNumber, currentPageNumber, start, end} = state;
         return {
             ...state,
             currentPageNumber: Math.max(currentPageNumber -1, totalPageNumber),
+            start: start - 10,
+            end: end - 10,
             // currentPageNumber: state.currentPageNumber - 1,
         }
     }),

@@ -6,9 +6,8 @@ const postFeature = (state:AppState) => state.post;
 export const selectAllPost = createSelector(
     postFeature,
     (postFeature) => {
-        const data = postFeature.data;
-        const start = 0;
-        const end = 10;
+        const {data, start, end} = postFeature;
+        console.log(start, end);
         const postList = data.slice(start, end);
         return postList;
         // return postFeature.data
