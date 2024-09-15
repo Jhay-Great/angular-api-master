@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { BehaviorSubject, catchError, map, Observable, of, tap } from 'rxjs';
 
 // local modules imports
-import { IPost } from '../../interface/post.interface';
+import { IPost, IPublish } from '../../interface/post.interface';
 import { environment } from '../../../environments/environment';
 @Injectable({
   providedIn: 'root'
@@ -40,13 +40,14 @@ export class PostService {
   }
 
   // post data to the server
-  post (body:string) {
+  post (body:IPublish) {
     return this.httpClient.post<IPost[]>(this.api, body).pipe(
       tap(data => {
         this.storeSubject.next(data)
       }),
+      map(data => ({ data })),
       catchError((error) => {
-        return of([]);
+        return of({ data: [] });
       })
     )
   }

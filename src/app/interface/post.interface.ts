@@ -14,6 +14,11 @@ export interface PostApi {
     selectedPostId: number,
 }
 
+export interface IPublish {
+    title: string,
+    body: string,
+}
+
 // export interface IPostAction {
 //     // type
 // }

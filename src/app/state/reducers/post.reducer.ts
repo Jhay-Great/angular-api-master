@@ -2,7 +2,7 @@ import { createReducer, on } from "@ngrx/store";
 
 // local imports
 import { PostApi } from "../../interface/post.interface";
-import { getSinglePost, onLoadPost, onSuccess } from "../actions/post.action";
+import { getSinglePost, onLoadPost, onSuccess, successPublishPost } from "../actions/post.action";
 
 // interface, initial value, reducer
 
@@ -22,5 +22,6 @@ export const postReducer = createReducer(
             ...state,
             selectedPostId: id,
         }
-    })
+    }),
+    on(successPublishPost, (state, { data }) => ({...state, data}))
 );

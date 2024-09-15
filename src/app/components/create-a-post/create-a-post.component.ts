@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators, } from '@angular/forms';
+import { PostService } from '../../services/post/post.service';
+import { Store } from '@ngrx/store';
+import { publishPost } from '../../state/actions/post.action';
 
 @Component({
   selector: 'app-create-a-post',
@@ -14,6 +17,8 @@ export class CreateAPostComponent implements OnInit {
   
   constructor (
     private fb:FormBuilder,
+    private postService:PostService,
+    private store:Store,
   ) {};
 
   ngOnInit(): void {
@@ -24,8 +29,9 @@ export class CreateAPostComponent implements OnInit {
   }
 
   publishPost () {
-    const data = this.form.value;
-    console.log(data);
+    const post = this.form.value;
+    this.store.dispatch(publishPost({data: post}))
+    console.log(post);
   }
 
 
