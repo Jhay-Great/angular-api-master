@@ -17,7 +17,11 @@ body {
 }
 
 h2 {
-    @include Mixin.header()
+    @include Mixin.header();
+}
+
+p {
+    @include Mixin.paragraphs();
 }
 
 button {
