@@ -52,7 +52,9 @@ export const postReducer = createReducer(
         const {totalPageNumber, currentPageNumber, start, end} = state;
         return {
             ...state,
-            currentPageNumber: Math.max(currentPageNumber -1, totalPageNumber),
+            // currentPageNumber: Math.max(currentPageNumber -1, totalPageNumber),
+            // currentPageNumber: currentPageNumber - 1,
+            currentPageNumber: Math.max(currentPageNumber -1, 0),
             start: start - 10,
             end: end - 10,
             // currentPageNumber: state.currentPageNumber - 1,
