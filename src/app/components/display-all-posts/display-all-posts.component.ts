@@ -4,7 +4,7 @@ import { Component, OnInit } from '@angular/core';
 import { PostService } from '../../services/post/post.service';
 import { AppState, IPost } from '../../interface/post.interface';
 import { Store } from '@ngrx/store';
-import { selectAllPost } from '../../state/selectors/post.selector';
+import { selectAllPost, selectCurrentPage, selectTotalPages } from '../../state/selectors/post.selector';
 import { Observable } from 'rxjs';
 import { AsyncPipe } from '@angular/common';
 import { nextPage, previousPage } from '../../state/actions/post.action';
@@ -19,6 +19,8 @@ import { nextPage, previousPage } from '../../state/actions/post.action';
 export class DisplayAllPostsComponent implements OnInit {
 
   data!:Observable<IPost[]>;
+  currentPage!:Observable<number>;
+  totalPages!:Observable<number>;
 
   constructor (
     private postService: PostService,
@@ -28,6 +30,9 @@ export class DisplayAllPostsComponent implements OnInit {
   ngOnInit(): void {
 
     this.data = this.store.select(selectAllPost);
+    this.currentPage = this.store.select(selectCurrentPage);
+    this.totalPages = this.store.select(selectTotalPages);
+
     
     
   }

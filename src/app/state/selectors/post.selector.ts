@@ -25,9 +25,16 @@ export const selectSinglePost = createSelector(
 )
 
 // pagination
-export const selectPages = createSelector(
+export const selectCurrentPage = createSelector(
     postFeature, 
     (postFeature) => {
         return postFeature.currentPageNumber
+    }
+)
+
+export const selectTotalPages = createSelector(
+    postFeature,
+    (postFeature) => {
+        return postFeature.totalPageNumber
     }
 )

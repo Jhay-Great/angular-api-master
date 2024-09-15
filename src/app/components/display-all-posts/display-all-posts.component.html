@@ -3,6 +3,10 @@
         previous
     </button>
 
+    {{ currentPage | async }}
+
+    {{ totalPages | async }}
+
     <button (click)="next()">
         next
     </button>
