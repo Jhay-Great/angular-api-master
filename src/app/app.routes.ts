@@ -3,7 +3,7 @@ import { DisplayAPostComponent } from './components/display-a-post/display-a-pos
 
 export const routes: Routes = [
   {
-    path: '/',
+    path: ':id',
     loadComponent: () => import(
         './components/display-a-post/display-a-post.component'
     ).then((c) => c.DisplayAPostComponent),
