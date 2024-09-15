@@ -6,6 +6,7 @@ const postFeature = (state:AppState) => state.post;
 export const selectAllPost = createSelector(
     postFeature,
     (postFeature) => {
+        console.log('in select: ', postFeature.data);
         return postFeature.data
     }
 )
