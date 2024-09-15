@@ -12,6 +12,10 @@ export interface AppState {
 export interface PostApi {
     data: IPost[],
     selectedPostId: number,
+    currentPageNumber: number,
+    totalPageNumber: number,
+    isLoading: boolean,
+    error: string,
 }
 
 export interface IPublish {

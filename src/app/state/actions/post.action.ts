@@ -9,8 +9,8 @@ export const SINGLE_POST = '[Post Api] gets a single post';
 export const PUBLISH = '[Post Api] publishes a new post';
 export const PUBLISH_SUCCESS = '[Post Api] successfully publishes a new post';
 export const PUBLISH_FAILURE = '[Post Api] failed to publish new post';
-export const NEXT_PAGE = '[Post Api] loads next set of page'
-export const PREVIOUS_PAGE = '[Post Api] loads previous set of page'
+export const NEXT_PAGE = '[Post Api Pages] loads next set of page'
+export const PREVIOUS_PAGE = '[Post Api Pages] loads previous set of page'
 
 
 // actions
@@ -42,12 +42,6 @@ export const failedPublishPost = createAction(
 );
 
 // next and previous actions
-export const nextPage = createAction(
-    NEXT_PAGE,
-    props<{data:IPost[], next:number}>(),
-);
-export const previousPage = createAction(
-    PREVIOUS_PAGE,
-    props<{data:IPost[], previous:number}>(),
-);
+export const nextPage = createAction( NEXT_PAGE );
+export const previousPage = createAction( PREVIOUS_PAGE );
 
