@@ -4,7 +4,7 @@ import { Component, OnInit } from '@angular/core';
 import { PostService } from '../../services/post/post.service';
 import { AppState, IPost } from '../../interface/post.interface';
 import { Store } from '@ngrx/store';
-import { selectPost } from '../../state/selectors/post.selector';
+import { selectAllPost } from '../../state/selectors/post.selector';
 import { Observable } from 'rxjs';
 import { AsyncPipe } from '@angular/common';
 
@@ -26,7 +26,7 @@ export class DisplayAllPostsComponent implements OnInit {
   
   ngOnInit(): void {
 
-    this.data = this.store.select(selectPost);
+    this.data = this.store.select(selectAllPost);
     
     
   }

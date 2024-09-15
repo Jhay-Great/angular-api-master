@@ -1,14 +1,16 @@
 import { Component, OnInit } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
-import { DisplayAllPostsComponent } from './components/display-all-posts/display-all-posts.component';
 import { Store } from '@ngrx/store';
+
+import { DisplayAllPostsComponent } from './components/display-all-posts/display-all-posts.component';
 import { AppState } from './interface/post.interface';
 import { onLoadPost } from './state/actions/post.action';
+import { DisplayAPostComponent } from './components/display-a-post/display-a-post.component';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet, DisplayAllPostsComponent],
+  imports: [RouterOutlet, DisplayAllPostsComponent, DisplayAPostComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss'
 })

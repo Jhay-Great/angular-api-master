@@ -1,1 +1,11 @@
 <p>display-a-post works!</p>
+
+@for (post of data | async; track $index) {
+    <h1>A single post</h1>
+    <h2>
+        {{ post.title }}
+    </h2>
+    <p>
+        {{ post.body }}
+    </p>
+}

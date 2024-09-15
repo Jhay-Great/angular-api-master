@@ -1,6 +1,6 @@
 export interface IPost {
-    userId: string;
-    id: string;
+    userId: number;
+    id: number;
     title: string;
     body: string;
 }
@@ -11,7 +11,7 @@ export interface AppState {
 
 export interface PostApi {
     data: IPost[],
-
+    selectedPostId: number,
 }
 
 // export interface IPostAction {
