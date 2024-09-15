@@ -1,1 +1,8 @@
 <p>create-a-post works!</p>
+
+
+<form [formGroup]="form" (ngSubmit)="publishPost()">
+    <input type="text" class="title" formControlName="title">
+    <textarea name="" id="post-body" cols="30" rows="20" formControlName="body"></textarea>
+    <button type="submit">Publish</button>
+</form>

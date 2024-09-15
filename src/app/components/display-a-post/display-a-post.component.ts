@@ -24,9 +24,6 @@ export class DisplayAPostComponent implements OnInit {
   ngOnInit(): void {
     this.store.dispatch(getSinglePost({id: 2}))
     this.data = this.store.select(selectSinglePost);
-    this.data.subscribe(
-      val => console.log(val),
-    )
   }
 
 }
