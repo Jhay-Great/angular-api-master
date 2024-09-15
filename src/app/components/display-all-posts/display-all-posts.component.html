@@ -3,9 +3,13 @@
         previous
     </button>
 
-    {{ currentPage | async }}
+    <p class="current-page">
+        {{ currentPage | async }}
+    </p>
 
-    {{ totalPages | async }}
+    <p class="total-pages">
+        {{ totalPages | async }}
+    </p>
 
     <button (click)="next()">
         next
