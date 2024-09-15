@@ -7,7 +7,6 @@ export const selectAllPost = createSelector(
     postFeature,
     (postFeature) => {
         const {data, start, end} = postFeature;
-        console.log(start, end);
         const postList = data.slice(start, end);
         return postList;
         // return postFeature.data
@@ -19,7 +18,6 @@ export const selectSinglePost = createSelector(
     (postFeature) => {
         const id = postFeature.selectedPostId;
         const data = postFeature.data;
-        console.log('in selector: ', data, id);
         return data.filter(post => post.id === id);
     }
 )
