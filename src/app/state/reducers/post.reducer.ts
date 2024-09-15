@@ -26,7 +26,7 @@ export const postReducer = createReducer(
             isLoading: true,
         }
     }),
-    on(onSuccess, (state, {data}) => ({...state, data})),
+    on(onSuccess, (state, {data}) => ({...state, data, totalPageNumber: Math.ceil(data.length / 10)})),
     on(getSinglePost, (state, {id}) => {
 
         return {
