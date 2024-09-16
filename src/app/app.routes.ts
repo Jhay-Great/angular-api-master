@@ -16,7 +16,4 @@ export const routes: Routes = [
   },
 ];
 
-// {
-//     path: 'lazy',
-//     loadComponent: () => import('./lazy-component').then(m => m.LazyComponent)
-//   }
+

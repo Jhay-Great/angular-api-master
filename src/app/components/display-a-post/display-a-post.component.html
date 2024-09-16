@@ -1,11 +1,18 @@
-<p>display-a-post works!</p>
 
 @for (post of data | async; track $index) {
-    <h1>A single post</h1>
-    <h2>
-        {{ post.title }}
-    </h2>
-    <p>
-        {{ post.body }}
-    </p>
+    <article class="posts">
+        <h2>
+            {{ post.title }}
+        </h2>
+        <p>
+            {{ post.body }}
+        </p>
+    </article>
+
 }
+<!-- @for (comments of comments | async; track $index) {
+    <section class="comments">
+    
+    </section>
+
+} -->

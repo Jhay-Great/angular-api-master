@@ -4,6 +4,7 @@
 
 section {
     @include Mixin.flex-column;
+    align-items: center;
 }
 
 article {

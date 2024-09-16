@@ -28,6 +28,13 @@ button {
     @include Mixin.buttons;
 }
 
+app-root {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+}
+
 app-display-all-posts {
     @include Mixin.flex-column(1rem);
     @include Mixin.width(700px);
