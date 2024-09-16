@@ -2,7 +2,7 @@
 
 <section>
     @for (post of data | async; track $index) {
-        <article>
+        <article (click)="routeTo(post.id)">
             <h2 class="title">
                 {{ post.title}}
             </h2>

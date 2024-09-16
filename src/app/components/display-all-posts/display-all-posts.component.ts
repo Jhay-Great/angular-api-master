@@ -9,6 +9,7 @@ import { Observable } from 'rxjs';
 import { AsyncPipe } from '@angular/common';
 import { nextPage, previousPage } from '../../state/actions/post.action';
 import { PaginationControlsComponent } from '../pagination-controls/pagination-controls.component';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-display-all-posts',
@@ -20,30 +21,36 @@ import { PaginationControlsComponent } from '../pagination-controls/pagination-c
 export class DisplayAllPostsComponent implements OnInit {
 
   data!:Observable<IPost[]>;
-  currentPage!:Observable<number>;
-  totalPages!:Observable<number>;
+  // currentPage!:Observable<number>;
+  // totalPages!:Observable<number>;
 
   constructor (
-    private postService: PostService,
-    private store: Store<AppState>
+    // private postService: PostService,
+    private store: Store<AppState>,
+    private router: Router,
   ) { }
   
   ngOnInit(): void {
 
     this.data = this.store.select(selectAllPost);
-    this.currentPage = this.store.select(selectCurrentPage);
-    this.totalPages = this.store.select(selectTotalPages);
+    // this.currentPage = this.store.select(selectCurrentPage);
+    // this.totalPages = this.store.select(selectTotalPages);
 
     
     
   }
 
-  next () {
-    this.store.dispatch(nextPage());
+  routeTo (id:number) {
+    console.log(id);
+    this.router.navigate([`post/:${id}`])
   }
 
-  previous () {
-    this.store.dispatch(previousPage());
-  }
+  // next () {
+  //   this.store.dispatch(nextPage());
+  // }
+
+  // previous () {
+  //   this.store.dispatch(previousPage());
+  // }
 
 }
