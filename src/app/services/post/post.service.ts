@@ -5,6 +5,7 @@ import { BehaviorSubject, catchError, map, Observable, of, tap } from 'rxjs';
 // local modules imports
 import { IPost, IPublish } from '../../interface/post.interface';
 import { environment } from '../../../environments/environment';
+import { ErrorService } from '../errors/error.service';
 @Injectable({
   providedIn: 'root'
 })
@@ -19,6 +20,7 @@ export class PostService {
 
   constructor(
     private httpClient: HttpClient,
+    private errorService: ErrorService,
   ) { }
 
   // gets or fetches data from the server
@@ -26,10 +28,11 @@ export class PostService {
     this.httpClient.get<IPost[]>(`${this.api}`).pipe(
       // transformation
       map(posts => this.storeSubject.next(posts)),
+      this.errorService.retry(),
       // error handling
       catchError((error) => {
         console.log('logs error: ', error);
-        return of([]); // fallback
+        return of({ data: [] }); // fallback
       })
     ).subscribe();
   }
@@ -46,6 +49,7 @@ export class PostService {
         this.storeSubject.next(data)
       }),
       map(data => ({ data })),
+      this.errorService.retry(),
       catchError((error) => {
         return of({ data: [] });
       })
@@ -58,8 +62,9 @@ export class PostService {
       tap(data => {
         this.storeSubject.next(data)
       }),
+      this.errorService.retry(),
       catchError((error) => {
-        return of([]);
+        return of({ data: [] });
       })
     )
   };
@@ -70,8 +75,9 @@ export class PostService {
       tap(data => {
         this.storeSubject.next(data)
       }),
+      this.errorService.retry(),
       catchError((error) => {
-        return of([]);
+        return of({ data: [] });
       })
     )
   };

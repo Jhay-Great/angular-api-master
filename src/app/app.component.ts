@@ -27,5 +27,7 @@ export class AppComponent implements OnInit {
 
   ngOnInit(): void {
     this.store.dispatch(onLoadPost());
+    // fetching comments
+    // this.store.dispatch(onLoadComments());
   }
 }
