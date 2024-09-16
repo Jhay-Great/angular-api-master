@@ -1,0 +1,15 @@
+@use '../../sass/variables' as Variable;
+@use '../../sass/functions' as Function;
+.current-page {
+    color: Variable.$color-accent-blue;
+    font-weight: 400;
+}
+.total-pages {
+    font-weight: 600;
+}
+
+svg {
+    width: Function.pixelsToRem(20);
+    height: 100%;
+}
+

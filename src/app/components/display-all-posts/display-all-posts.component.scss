@@ -15,3 +15,10 @@ article {
     color: Variable.$color-off-white;
     border-radius: Variable.$very-small;
 }
+
+app-pagination-controls {
+    @include Mixin.flex-row(1rem);
+    align-items: center;
+    justify-content: flex-end;
+    // height: 100%;
+}
