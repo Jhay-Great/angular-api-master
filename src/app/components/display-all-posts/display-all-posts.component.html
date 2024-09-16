@@ -1,27 +1,17 @@
+<app-pagination-controls />
+
 <section>
-    <button (click)="previous()">
-        previous
-    </button>
+    @for (post of data | async; track $index) {
+        <article>
+            <h2 class="title">
+                {{ post.title}}
+            </h2>
+            <p class="body">
+                {{ post.body }}
+            </p>
+    
+        </article>
+    }
 
-    <p class="current-page">
-        {{ currentPage | async }}
-    </p>
-
-    <p class="total-pages">
-        {{ totalPages | async }}
-    </p>
-
-    <button (click)="next()">
-        next
-    </button>
 </section>
-
-@for (post of data | async; track $index) {
-    <h2 class="title">
-        {{ post.title}}
-    </h2>
-    <p class="body">
-        {{ post.body }}
-    </p>
-}
 

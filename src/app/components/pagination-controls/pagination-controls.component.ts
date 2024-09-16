@@ -8,42 +8,42 @@ import { selectAllPost, selectCurrentPage, selectTotalPages } from '../../state/
 import { Observable } from 'rxjs';
 import { AsyncPipe } from '@angular/common';
 import { nextPage, previousPage } from '../../state/actions/post.action';
-import { PaginationControlsComponent } from '../pagination-controls/pagination-controls.component';
 
 @Component({
-  selector: 'app-display-all-posts',
+  selector: 'app-pagination-controls',
   standalone: true,
-  imports: [ AsyncPipe, PaginationControlsComponent ],
-  templateUrl: './display-all-posts.component.html',
-  styleUrl: './display-all-posts.component.scss'
+  imports: [AsyncPipe],
+  templateUrl: './pagination-controls.component.html',
+  styleUrl: './pagination-controls.component.scss'
 })
-export class DisplayAllPostsComponent implements OnInit {
+export class PaginationControlsComponent implements OnInit {
 
   data!:Observable<IPost[]>;
   currentPage!:Observable<number>;
   totalPages!:Observable<number>;
-
+  
   constructor (
-    private postService: PostService,
     private store: Store<AppState>
   ) { }
   
   ngOnInit(): void {
-
+  
     this.data = this.store.select(selectAllPost);
     this.currentPage = this.store.select(selectCurrentPage);
     this.totalPages = this.store.select(selectTotalPages);
-
+  
     
     
   }
-
+  
   next () {
     this.store.dispatch(nextPage());
   }
-
+  
   previous () {
     this.store.dispatch(previousPage());
   }
 
 }
+
+

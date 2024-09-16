@@ -8,16 +8,20 @@
 //     justify-content: $justify-content;
 // }
 
-@mixin flex-row ($gapSize: 5rem) {
+@mixin flex-row ($gapSize: 2rem) {
     display: flex;
     flex-direction: row;
     gap: $gapSize;
 }
 
-@mixin flex-column ($gapSize: 5rem) {
+@mixin flex-column ($gapSize: 2rem) {
     display: flex;
     flex-direction: column;
     gap: $gapSize;
+}
+
+@mixin width ($size) {
+    width: min($size, 100%);
 }
 
 @mixin header ($font-size: 1rem) {

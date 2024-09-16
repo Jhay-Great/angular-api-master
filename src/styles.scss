@@ -27,3 +27,9 @@ p {
 button {
     @include Mixin.buttons;
 }
+
+app-display-all-posts {
+    @include Mixin.flex-column(1rem);
+    @include Mixin.width(700px);
+    height: fit-content;
+}

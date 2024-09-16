@@ -1,0 +1,17 @@
+<section>
+    <button (click)="previous()">
+        previous
+    </button>
+
+    <p class="current-page">
+        {{ currentPage | async }}
+    </p>
+
+    <p class="total-pages">
+        {{ totalPages | async }}
+    </p>
+
+    <button (click)="next()">
+        next
+    </button>
+</section>
