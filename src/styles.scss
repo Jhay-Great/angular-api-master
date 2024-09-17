@@ -16,11 +16,11 @@ body {
     padding-block: Variable.$spacing;
 }
 
-h2 {
+h1 {
     @include Mixin.header();
 }
-h3 {
-    @extend h2;
+h2, h3 {
+    @extend h1;
 }
 
 p {
@@ -34,12 +34,16 @@ button {
 app-root {
     width: 100%;
     height: 100%;
-    display: flex;
+    @include Mixin.flex-column();
     justify-content: center;
+
+    & > *:not(:first-child) {
+        margin: auto;
+    }
 }
 
 app-display-all-posts {
-    @include Mixin.flex-column(1rem);
+    @include Mixin.flex-column(2rem);
     @include Mixin.width(700px);
     height: fit-content;
 }
