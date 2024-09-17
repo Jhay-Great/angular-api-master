@@ -1,4 +1,10 @@
-<app-pagination-controls />
+<div class="controls">
+    <button [routerLink]=" 'create' ">
+        Publish a post
+    </button>
+
+    <app-pagination-controls />
+</div>
 
 <section>
     @for (post of data | async; track $index) {

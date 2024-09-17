@@ -9,12 +9,12 @@ import { Observable } from 'rxjs';
 import { AsyncPipe } from '@angular/common';
 import { nextPage, previousPage } from '../../state/actions/post.action';
 import { PaginationControlsComponent } from '../pagination-controls/pagination-controls.component';
-import { Router } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-display-all-posts',
   standalone: true,
-  imports: [ AsyncPipe, PaginationControlsComponent ],
+  imports: [ AsyncPipe, PaginationControlsComponent, RouterLink ],
   templateUrl: './display-all-posts.component.html',
   styleUrl: './display-all-posts.component.scss'
 })
