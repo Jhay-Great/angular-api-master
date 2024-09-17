@@ -2,5 +2,42 @@
 @use '../../sass/variables' as Variable;
 @use '../../sass/functions' as Function;
 
+.post {
+   flex: 2; 
+}
+
+.container {
+    width: min(250px, 90%);
+    @include Mixin.flex-column(1rem);
+    overflow-y: scroll;
+    scrollbar-width: none;
+}
+.comments-container {
+    width: 100%;
+    @include Mixin.flex-column(1rem);
+}
+
+@media screen and (max-width: 1024px) {
+    .post {
+        flex: none;
+    }
+    .container {
+        justify-content: center;
+        width: 100%;
+    }
+}
+
+@media screen and (max-width: 780px) {
+    .post {
+        flex: none;
+    }
+    .container {
+        justify-content: center;
+        width: 100%;
+    }
+}
+
+
+
 
 

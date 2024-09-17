@@ -19,6 +19,9 @@ body {
 h2 {
     @include Mixin.header();
 }
+h3 {
+    @extend h2;
+}
 
 p {
     @include Mixin.paragraphs();
@@ -39,4 +42,19 @@ app-display-all-posts {
     @include Mixin.flex-column(1rem);
     @include Mixin.width(700px);
     height: fit-content;
+}
+
+app-display-a-post {
+    @extend app-display-all-posts;
+    height: 100dvh;
+    // @include Mixin.width(700px);
+    // @include Mixin.flex-row(1rem);
+    padding: 0 1rem;
+}
+
+
+@media screen and (max-width: 780px) {
+    app-display-a-post {
+        @include Mixin.flex-column(1rem);
+    }
 }

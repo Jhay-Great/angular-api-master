@@ -5,11 +5,12 @@ import { map, Observable, Subscription } from 'rxjs';
 import { selectSinglePost } from '../../state/selectors/post.selector';
 import { AsyncPipe } from '@angular/common';
 import { getSinglePost } from '../../state/actions/post.action';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-display-a-post',
   standalone: true,
-  imports: [ AsyncPipe ],
+  imports: [ AsyncPipe, RouterLink ],
   templateUrl: './display-a-post.component.html',
   styleUrl: './display-a-post.component.scss'
 })

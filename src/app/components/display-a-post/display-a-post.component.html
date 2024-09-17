@@ -1,3 +1,7 @@
+<button  [routerLink]=" '' ">
+    back
+</button>
+
 
 <section class="post">
     @for (post of post ; track $index) {
@@ -15,14 +19,19 @@
     }
 </section>
 
-<section class="comments-container">
-    @for (comment of comments; track $index) {
-        <div class="comments">
-            <p>
-                {{ comment.body }}
-            </p>
-        </div>
-    
-    }
+<section class="container">
+    <h3>Comments</h3>
+
+    <section class="comments-container">
+        @for (comment of comments; track $index) {
+            <div class="comments">
+                <p>
+                    {{ comment.body }}
+                </p>
+            </div>
+        
+        }
+
+    </section>
 
 </section>
