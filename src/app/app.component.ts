@@ -4,7 +4,7 @@ import { Store } from '@ngrx/store';
 
 import { DisplayAllPostsComponent } from './components/display-all-posts/display-all-posts.component';
 import { AppState } from './interface/post.interface';
-import { onLoadPost } from './state/actions/post.action';
+import { onLoadComments, onLoadPost } from './state/actions/post.action';
 import { DisplayAPostComponent } from './components/display-a-post/display-a-post.component';
 import { CreateAPostComponent } from './components/create-a-post/create-a-post.component';
 
@@ -27,6 +27,7 @@ export class AppComponent implements OnInit {
 
   ngOnInit(): void {
     this.store.dispatch(onLoadPost());
+    this.store.dispatch(onLoadComments());
     // fetching comments
     // this.store.dispatch(onLoadComments());
   }

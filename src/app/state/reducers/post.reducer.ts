@@ -2,13 +2,14 @@ import { createReducer, on } from "@ngrx/store";
 
 // local imports
 import { PostApi } from "../../interface/post.interface";
-import { getSinglePost, nextPage, onLoadPost, onSuccess, previousPage, successPublishPost } from "../actions/post.action";
+import { getSinglePost, loadCommentsSuccess, nextPage, onLoadComments, onLoadPost, onSuccess, previousPage, successPublishPost } from "../actions/post.action";
 
 // interface, initial value, reducer
 
 
 const initialValue:PostApi = {
     data: [],
+    comments: [],
     selectedPostId: NaN,
     currentPageNumber: 0,
     totalPageNumber: 0,
@@ -20,16 +21,21 @@ const initialValue:PostApi = {
 
 export const postReducer = createReducer(
     initialValue,
-    on(onLoadPost, (state) => {
+    on(onLoadPost, onLoadComments, (state) => {
         return {
             ...state,
             isLoading: true,
         }
     }),
     on(onSuccess, (state, {data}) => (
-        console.log('total pages no.: ', Math.ceil(data.length / 10)),
         {...state, data, totalPageNumber: Math.ceil(data.length / 10)}
         )),
+    on(loadCommentsSuccess, (state, {comments}) => {
+        return {
+            ...state,
+            comments,
+        }
+    }),
     on(getSinglePost, (state, {id}) => {
 
         return {

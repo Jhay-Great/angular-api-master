@@ -1,7 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
-import { AppState, IPost } from '../../interface/post.interface';
-import { Observable } from 'rxjs';
+import { AppState, IComments, IPost, IPostComment } from '../../interface/post.interface';
+import { map, Observable, Subscription } from 'rxjs';
 import { selectSinglePost } from '../../state/selectors/post.selector';
 import { AsyncPipe } from '@angular/common';
 import { getSinglePost } from '../../state/actions/post.action';
@@ -13,9 +13,16 @@ import { getSinglePost } from '../../state/actions/post.action';
   templateUrl: './display-a-post.component.html',
   styleUrl: './display-a-post.component.scss'
 })
-export class DisplayAPostComponent implements OnInit {
+export class DisplayAPostComponent implements OnInit, OnDestroy {
 
-  data!:Observable<IPost[]>;
+
+  // data!:Observable<IPost[]>;
+  // post!:Observable<IPost[]>;
+  // data!:Observable<IPostComment>;
+  data = this.store.select(selectSinglePost);
+  subscription!: Subscription;
+  post!:IPost[];
+  comments!:IComments[];
 
   constructor (
     private store: Store<AppState>,
@@ -23,7 +30,21 @@ export class DisplayAPostComponent implements OnInit {
 
   ngOnInit(): void {
     this.store.dispatch(getSinglePost({id: 2}))
-    this.data = this.store.select(selectSinglePost);
+    
+
+    this.subscription = this.store.select(selectSinglePost).subscribe(
+      value => {
+        const { post, postComments } = value;
+        this.post = post;
+        this.comments = postComments;
+
+      }
+    )
+    
+  }
+
+  ngOnDestroy(): void {
+    this.subscription.unsubscribe();
   }
 
 }

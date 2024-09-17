@@ -1,18 +1,28 @@
 
-@for (post of data | async; track $index) {
-    <article class="posts">
-        <h2>
-            {{ post.title }}
-        </h2>
-        <p>
-            {{ post.body }}
-        </p>
-    </article>
-
-}
-<!-- @for (comments of comments | async; track $index) {
-    <section class="comments">
+<section class="post">
+    @for (post of post ; track $index) {
+        <article class="posts">
+            <h2>
+                {{ post.title }}
+            </h2>
+            <p>
+                {{ post.body }}
+            </p>
+        </article>
     
-    </section>
+    
+    
+    }
+</section>
 
-} -->
+<section class="comments-container">
+    @for (comment of comments; track $index) {
+        <div class="comments">
+            <p>
+                {{ comment.body }}
+            </p>
+        </div>
+    
+    }
+
+</section>

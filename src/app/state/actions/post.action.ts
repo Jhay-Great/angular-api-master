@@ -1,5 +1,5 @@
 import { createAction, props } from "@ngrx/store";
-import { IPost, IPublish } from "../../interface/post.interface";
+import { IComments, IPost, IPublish } from "../../interface/post.interface";
 
 // action type
 export const LOAD_POST_DATA = '[Post Api] fetch all post from server';
@@ -44,4 +44,19 @@ export const failedPublishPost = createAction(
 // next and previous actions
 export const nextPage = createAction( NEXT_PAGE );
 export const previousPage = createAction( PREVIOUS_PAGE );
+
+// comments
+export const onLoadComments = createAction('[Comments Api] loads comments');
+export const loadCommentsSuccess = createAction(
+    '[Comments Api] loads comments successfully',
+    props<{comments:IComments[]}>(),
+);
+export const loadCommentsFailed = createAction(
+    '[Comments Api] loads comments failed',
+    props<{error:string}>()
+);
+// export const getPostComments = createAction(
+//     SINGLE_POST,
+//     props<{id:number}>(),
+// );
 

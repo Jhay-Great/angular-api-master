@@ -1,6 +1,6 @@
 import { Injectable } from "@angular/core";
 import { Actions, createEffect, ofType } from "@ngrx/effects";
-import { failedPublishPost, LOAD_POST_DATA, onFailure, onLoadPost, onSuccess, PUBLISH, publishPost, successPublishPost } from "../actions/post.action";
+import { failedPublishPost, LOAD_POST_DATA, loadCommentsFailed, loadCommentsSuccess, onFailure, onLoadComments, onLoadPost, onSuccess, PUBLISH, publishPost, successPublishPost } from "../actions/post.action";
 import { catchError, map, mergeMap, of, tap } from "rxjs";
 import { PostService } from "../../services/post/post.service";
 
@@ -18,6 +18,18 @@ export class loadPostEffect {
             )
         )
     );
+
+    comments$ = createEffect(() =>
+      this.actions$.pipe(
+        ofType(onLoadComments),
+        mergeMap(() => 
+            this.postService.getComments().pipe(
+                map(comment => loadCommentsSuccess({comments: comment})),
+                catchError(error => of(loadCommentsFailed({error})))
+            )
+        )
+      )
+    )
     
     addPost$ = createEffect(() => 
         this.actions$.pipe(

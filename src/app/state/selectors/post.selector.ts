@@ -16,9 +16,24 @@ export const selectAllPost = createSelector(
 export const selectSinglePost = createSelector(
     postFeature,
     (postFeature) => {
+        const comments = postFeature.comments;
         const id = postFeature.selectedPostId;
         const data = postFeature.data;
-        return data.filter(post => post.id === id);
+
+        const postComments = comments.filter(postComment => id === postComment.postId);
+        const post = data.filter(post => post.id === id);
+        const postData = [...post, ...postComments];
+        const postObj = {
+            post,
+            postComments,
+        }
+
+        console.log(postObj);
+
+        return postObj;
+
+        // console.log('post and comments: ', postObj);
+        // return data.filter(post => post.id === id);
     }
 )
 

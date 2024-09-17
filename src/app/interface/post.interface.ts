@@ -5,12 +5,21 @@ export interface IPost {
     body: string;
 }
 
+export interface IComments {
+    "postId": number,
+    "id": number,
+    "name": string,
+    "email": string,
+    "body": string,
+}
+
 export interface AppState {
     post: PostApi,
 }
 
 export interface PostApi {
     data: IPost[],
+    comments: IComments[],
     selectedPostId: number,
     currentPageNumber: number,
     totalPageNumber: number,
@@ -24,6 +33,11 @@ export interface IPublish {
     title: string,
     body: string,
 }
+
+export interface IPostComment {
+    post: IPost[],
+    comments: IComments[],
+  }
 
 // export interface IPostAction {
 //     // type

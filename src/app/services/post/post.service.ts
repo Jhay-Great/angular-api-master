@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { BehaviorSubject, catchError, map, Observable, of, tap } from 'rxjs';
 
 // local modules imports
-import { IPost, IPublish } from '../../interface/post.interface';
+import { IComments, IPost, IPublish } from '../../interface/post.interface';
 import { environment } from '../../../environments/environment';
 import { ErrorService } from '../errors/error.service';
 @Injectable({
@@ -12,11 +12,16 @@ import { ErrorService } from '../errors/error.service';
 export class PostService {
 
   private api:string = `${environment.apiUrl}posts`; 
+  private commentsApi = `${environment.apiUrl}comments`;
 
   // caching
   private posts:IPost[] = [];
   private storeSubject = new BehaviorSubject<IPost[]>(this.posts);
   private store$ = this.storeSubject.asObservable();
+
+  private comments:IComments[] = [];
+  private commentsSubject = new BehaviorSubject<IComments[]>(this.comments);
+  private comments$ = this.commentsSubject.asObservable();
 
   constructor(
     private httpClient: HttpClient,
@@ -39,7 +44,22 @@ export class PostService {
 
   getPosts () {
     this.fetchData();
+    this.fetchComments();
     return this.store$;
+  }
+
+  private fetchComments () {
+    this.httpClient.get<IComments[]>(this.commentsApi).pipe(
+      map(comments => this.commentsSubject.next(comments)),
+      this.errorService.retry(),
+      catchError(error => {
+        return of({data: []})
+      })
+    ).subscribe()
+  }
+
+  getComments ():Observable<IComments[]> {
+    return this.comments$;
   }
 
   // post data to the server
