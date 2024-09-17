@@ -51,7 +51,11 @@ app-display-a-post {
     // @include Mixin.flex-row(1rem);
     padding: 0 1rem;
 }
+app-create-a-post {
+    @include Mixin.flex-column();
+    @include Mixin.width(700px);
 
+}
 
 @media screen and (max-width: 780px) {
     app-display-a-post {

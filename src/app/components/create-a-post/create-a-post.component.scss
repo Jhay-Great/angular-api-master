@@ -1,0 +1,16 @@
+@use '../../sass/mixins' as M;
+@use '../../sass/functions' as F;
+@use '../../sass/variables' as V;
+
+form {
+    @include M.flex-column(1rem);
+    @include M.width(700px);
+
+    input {
+        height: F.pixelsToRem(50);
+        padding: V.$spacing;
+    }
+    textarea {
+        padding: V.$spacing;
+    }
+}

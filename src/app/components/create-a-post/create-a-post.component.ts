@@ -3,11 +3,12 @@ import { FormBuilder, FormGroup, ReactiveFormsModule, Validators, } from '@angul
 import { PostService } from '../../services/post/post.service';
 import { Store } from '@ngrx/store';
 import { publishPost } from '../../state/actions/post.action';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-create-a-post',
   standalone: true,
-  imports: [ReactiveFormsModule, ],
+  imports: [ReactiveFormsModule, RouterLink],
   templateUrl: './create-a-post.component.html',
   styleUrl: './create-a-post.component.scss'
 })
